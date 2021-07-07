@@ -1,0 +1,8 @@
+.epizods-list {
+  display: grid;
+  grid-template: repeat(4, 32px)/repeat(4, auto);
+  grid-auto-flow: column;
+  gap: 25px;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+}

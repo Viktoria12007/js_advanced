@@ -17,7 +17,7 @@ async function callServerStorage() {
 while (container.firstChild) {
 container.removeChild(container.firstChild);
 }
-  
+
 let {createTodoApp} = await import('./todo-app-server/view.js');
 let {
 getTodoList,
@@ -29,13 +29,13 @@ deleteTodoItem} = await import('./todo-app-server/api.js');
 (async () => {
 const todoItemList = await getTodoList(currentOwner);
 createTodoApp(document.getElementById('todo-app'), {
-title: currentTitle, 
+title: currentTitle,
 currentOwner,
-todoItemList, 
+todoItemList,
 onCreateFormSubmit: createTodoItem,
 onDoneClick: switchTodoItemDone,
 onDeleteClick: deleteTodoItem
-});  
+});
 }) ();
 
 switchStorageButton.textContent = 'Перейти на локальное хранилище';
@@ -69,14 +69,14 @@ switchStorageButton.textContent = 'Перейти на серверное хра
 localStorage.setItem('Хранилище', JSON.stringify('local'));
 
 }
-    
+
 function chooseStorage({localAction, serverAction}) {
 
 if (data === 'local') {
 localAction();
 }
 if (data === 'server') {
-serverAction(); 
+serverAction();
 }
 
 
