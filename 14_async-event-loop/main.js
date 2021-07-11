@@ -48,7 +48,7 @@ async function chooseCreateFunction(func = load) {
     container.innerHTML = '';
     preload.classList.remove('loaded');
 
-    if (currentPage === '/index.html') {
+    if (currentPage === '/index.html' || currentPage === '/' || currentPage === undefined) {
         await loadCss('./styles/allEpizods.css');
         const { createEpizodsList } = await
         import ('./js/epizodsList.js');
