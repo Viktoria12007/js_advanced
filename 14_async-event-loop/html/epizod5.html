@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src * data: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src *">
-  <title>The Star Wars</title>
-  <link rel="preload" href="../fonts/STARWARS.woff" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="../fonts/STARWARS.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="../styles/main.css">
-  <script defer src="../main.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' gap:; script-src * data: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src 'self' data:; media-src 'self' data:; font-src 'self' https://fonts.gstatic.com data:; connect-src *">
+    <title>The Star Wars</title>
+    <link rel="preload" href="../fonts/STARWARS.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="../fonts/STARWARS.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../styles/main.css">
+    <script defer src="../main.js"></script>
 </head>
+
 <body>
-  <audio class="audio" src="../audio/StarWars.mp3" controls autoplay></audio>
-  <!-- <embed src="../audio/StarWars.mp3" autostart="true" hidden="true"> -->
-  <!-- <audio src="../audio/StarWars.mp3" autoplay loop></audio> -->
-   <!-- <audio src="../audio/StarWars.mp3" autoplay="true" hidden="false" loop="true"></audio> -->
+    <!-- <iframe src="../audio/silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+    <audio class="audio" id="player" controls autoplay loop>
+      <source src="../audio/StarWars.mp3" type="audio/mp3">
+  </audio> -->
+    <audio class="audio" src="../audio/StarWars.mp3" controls autoplay></audio>
+    <!-- <embed src="../audio/StarWars.mp3" autostart="true" hidden="true"> -->
+    <!-- <audio src="../audio/StarWars.mp3" autoplay loop></audio> -->
+    <!-- <audio src="../audio/StarWars.mp3" autoplay="true" hidden="false" loop="true"></audio> -->
     <div class="preload">
-      <?xml version="1.0" encoding="iso-8859-1"?>
-     <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-     <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-     <svg class="preload__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-        viewBox="0 0 213.652 213.652" style="enable-background:new 0 0 213.652 213.652;" xml:space="preserve">
+        <?xml version="1.0" encoding="iso-8859-1"?>
+        <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+        <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+        <svg class="preload__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.652 213.652" style="enable-background:new 0 0 213.652 213.652;" xml:space="preserve">
      <path d="M106.826,213.652c-0.378,0-0.757-0.007-1.142-0.021c-3.864-0.143-17.262-0.781-27.405-3.01
        c-12.45-2.736-19.411-4.522-25.294-7.268c-4.635-2.164-6.084-5.398-6.531-7.397c-4.644-1.036-19.254-4.993-30.908-15.75
        c-4.998-4.614-7.912-9.053-9.585-12.889c-0.023-0.048-0.044-0.098-0.064-0.148c-2.993-6.964-1.898-11.904-1.824-12.22
@@ -129,7 +134,8 @@
      <g>
      </g>
      </svg>
-   </div>
+    </div>
     <div id="starWars-app" class="container"></div>
 </body>
+
 </html>

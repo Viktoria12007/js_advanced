@@ -1,30 +1,30 @@
 export async function getDataEpizod(url) {
-  const data = await getData(url);
-  const promisePlanets = [];
+    const data = await getData(url);
+    const promisePlanets = [];
 
-  data.planets.forEach(planet => {
-   promisePlanets.push(getPromise(planet));
-  });
+    data.planets.forEach(planet => {
+        promisePlanets.push(getPromise(planet));
+    });
 
-  const promiseSpecies = [];
+    const promiseSpecies = [];
 
-  data.species.forEach(species => {
-   promiseSpecies.push(getPromise(species));
-  });
+    data.species.forEach(species => {
+        promiseSpecies.push(getPromise(species));
+    });
 
-  const planetsArray = await Promise.all(promisePlanets);
-  const speciesArray = await Promise.all(promiseSpecies);
+    const planetsArray = await Promise.all(promisePlanets);
+    const speciesArray = await Promise.all(promiseSpecies);
 
-  return {data, planetsArray, speciesArray};
+    return { data, planetsArray, speciesArray };
 }
 
 export function createEpizodPage(data, planets, species) {
-  const mainTitle = document.createElement('h1');
-  mainTitle.textContent = `${data.title} ${data.episode_id}`;
-  const form = document.createElement('form');
-  const backLink = document.createElement('a');
-  backLink.href = '../index.html';
-  backLink.innerHTML = `<?xml version="1.0" encoding="iso-8859-1"?>
+    const mainTitle = document.createElement('h1');
+    mainTitle.classList.add('main-title');
+    mainTitle.textContent = `${data.title} ${data.episode_id}`;
+    const backLink = document.createElement('a');
+    backLink.href = '../index.html';
+    backLink.innerHTML = `<?xml version="1.0" encoding="iso-8859-1"?>
   <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
   <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
   <svg fill="#333333" width="60px" height="60px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -102,28 +102,28 @@ export function createEpizodPage(data, planets, species) {
   <g>
   </g>
   </svg>Back to episodes`;
-  backLink.classList.add('epizods-link', 'back-link');
-  const description = document.createElement('p');
-  description.textContent = data.opening_crawl;
-  const planetsTitle = document.createElement('h2');
-  planetsTitle.textContent = "Planets";
-  const planetsList = document.createElement('ul');
-  planetsList.classList.add('epizods-list');
-  planets.forEach((planet, index) => {
-    const element = document.createElement('li');
-    element.classList.add('epizods-item');
-    element.textContent = `${index+1}. ${planet.name}`;
-    planetsList.append(element);
-  });
-  const speciesTitle = document.createElement('h2');
-  speciesTitle.textContent = "Species";
-  const speciesList = document.createElement('ul');
-  speciesList.classList.add('epizods-list');
-  species.forEach((race, index) => {
-    const element = document.createElement('li');
-    element.classList.add('epizods-item');
-    element.textContent = `${index+1}. ${race.name}`;
-    speciesList.append(element);
-  });
-  container.append(mainTitle, backLink, description, planetsTitle, planetsList, speciesTitle, speciesList);
+    backLink.classList.add('epizods-link', 'back-link');
+    const description = document.createElement('p');
+    description.textContent = data.opening_crawl;
+    const planetsTitle = document.createElement('h2');
+    planetsTitle.textContent = "Planets";
+    const planetsList = document.createElement('ul');
+    planetsList.classList.add('epizods-list');
+    planets.forEach((planet, index) => {
+        const element = document.createElement('li');
+        element.classList.add('epizods-item');
+        element.textContent = `${index+1}. ${planet.name}`;
+        planetsList.append(element);
+    });
+    const speciesTitle = document.createElement('h2');
+    speciesTitle.textContent = "Species";
+    const speciesList = document.createElement('ul');
+    speciesList.classList.add('epizods-list');
+    species.forEach((race, index) => {
+        const element = document.createElement('li');
+        element.classList.add('epizods-item');
+        element.textContent = `${index+1}. ${race.name}`;
+        speciesList.append(element);
+    });
+    container.append(mainTitle, backLink, description, planetsTitle, planetsList, speciesTitle, speciesList);
 }
