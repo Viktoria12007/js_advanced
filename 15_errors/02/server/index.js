@@ -1,10 +1,14 @@
 const express = require('express');
 const path = require('path');
 const faker = require('faker');
+const cors = require('cors');
 
 const PORT = 3000;
 
 const app = express();
+
+app.use(cors());
+
 const products = new Array(10).fill().map(() => ({
   image: faker.image.image(),
   name: faker.commerce.productName(),
