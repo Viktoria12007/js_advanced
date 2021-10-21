@@ -1,4 +1,5 @@
-import ComponentError from "./componentError";
+import ComponentError from "./componentError.js";
+
 export default class BaseComponent {
     constructor(selector, data = null, showLoader = true, showErrorState = true) {
         this.selector = selector;
@@ -35,7 +36,7 @@ export default class BaseComponent {
     // static get showLoader() {
     //     return this._showLoader;
     // }
-    setShowError() {
+    // setShowError() {
         // const info = document.getElementById('info');
         // // if (action !== null) {
 
@@ -49,9 +50,11 @@ export default class BaseComponent {
         //     console.log(this.showErrorState);
         //     info.classList.remove('show');
         // }
-        console.log(this.showErrorState);
-        return this.showErrorState;
-    }
+
+
+    //     console.log(this.showErrorState);
+    //     return this.showErrorState;
+    // }
     setShowLoader() {
         const spinner = document.getElementById('spinner');
         // if (action !== null) {
@@ -85,4 +88,16 @@ export default class BaseComponent {
              }
          }, 500);
      }
+    static wait(ms) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve();
+          }, ms);
+        });
+      }
+    static async fetch() {
+        await wait(3000);
+    
+            return {}
+      }
 }

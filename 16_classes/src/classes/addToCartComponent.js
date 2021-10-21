@@ -1,4 +1,5 @@
-import BaseComponent from "./baseComponent";
+import BaseComponent from "./baseComponent.js";
+
 export default class AddToCartComponent extends BaseComponent {
     constructor(selector, count, show = true) {
         if (typeof count !== "number" || count < 0) {
@@ -107,8 +108,10 @@ export default class AddToCartComponent extends BaseComponent {
         });
       }
     static async fetch(selector, number, showSpinner, showError) {
-      baseComponent = new BaseComponent(selector, number, showSpinner, showError);
-      baseComponent.setShowLoader();
+      let baseComponentItem = new BaseComponent(selector, number, showSpinner, showError);
+      baseComponentItem.setShowLoader();
+
+
     //   baseComponent.setShowError();
         await this.wait(3000);
             //    throw new Error('Yhooo!');  // Симулировать ошибку при неудачной загрузке данных при вызове метода fetch

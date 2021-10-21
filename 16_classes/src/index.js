@@ -1,15 +1,16 @@
-import onlyHideSpinner from './functions/onlyHideSpinner';
+import onlyHideSpinner from './functions/onlyHideSpinner.js';
 // import ComponentError from "./componentError";
-// import BaseComponent from "./baseComponent";
-import AddToCartComponent from './classes/addToCartComponent';
-
-let baseComponent;
+import BaseComponent from "./classes/baseComponent.js";
+import AddToCartComponent from './classes/addToCartComponent.js';
+// import baseComponentItem from './classes/addToCartComponent.js';
 
 async function startLoad(selector, number, showSpinner, showError) {
     const info = document.getElementById('info');
+    let baseComponentItem;
+    
     try {
         // let countCart;
-        
+        baseComponentItem = new BaseComponent(selector, number, showSpinner, showError);
         const againLoad = document.getElementById('repetLoad');
         againLoad.addEventListener('click', async () => {
             // startLoad('#container', 5, true, true);
@@ -35,21 +36,25 @@ async function startLoad(selector, number, showSpinner, showError) {
         // console.log(countCart);
     }
     catch(error) {
-        console.log(error);
-        if(baseComponent) {
-        if (baseComponent.setShowError()) {
-        info.classList.add('show');
+        // console.log(error);
+        // console.log(baseComponentItem);
+        // console.log(baseComponentItem.showErrorState);
+        if (baseComponentItem) {
+            // console.log(baseComponentItem.showErrorState);
+            // if (baseComponentItem.setShowError()) {
+            if (baseComponentItem.showErrorState) {
+            info.classList.add('show');
+            }
+            else {
+                info.classList.remove('show');
+            }
         }
-        else {
-            info.classList.remove('show');
-        }
-    }
     }
     finally {
         // const base = new BaseComponent();
         console.log('что-то там!')
-        if (baseComponent) {
-        baseComponent.hideSpinner('don`t create');
+        if (baseComponentItem) {
+        baseComponentItem.hideSpinner('don`t create');
         }
         else {
             window.setTimeout(() => {
@@ -59,4 +64,4 @@ async function startLoad(selector, number, showSpinner, showError) {
     }
 }
 
-startLoad('#container', 5, true, true);
+startLoad('#container', 10, true, true);
