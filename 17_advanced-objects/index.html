@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced-Objects</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script type="module" src="./index.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="flex-column input-group mb-3" novalidate>
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <input type="text" class="form-control" placeholder="Введите класс, функцию или функцию-конструктор" id="mainInput">
+                    <div class="valid-feedback">
+                        Все хорошо!
+                    </div>
+                    <div class="invalid-feedback">
+                        Что-то пошло не так...
+                    </div>
+                </div>
+                <div clas="input-group-append">
+                    <button type="click" class="btn btn-primary" id="mainButton">Показать цепочку прототипов</button>
+                </div>
+            </div>
+        </form>
+        <div id="list"></div>
+    </div>
+</body>
+</html>
