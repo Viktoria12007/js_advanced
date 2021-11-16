@@ -22,9 +22,8 @@ mainButton.addEventListener('click', async (event) => {
 
   try {
     if(patternModulesJs.test(mainInput.value.trim())) {
-      console.log('yes');
       const module = await import(`./modules/${mainInput.value.trim()}`);
-      console.log(typeof module.default);
+      // console.log(typeof module.default);
       createArrayPrototypes(module.default);
     }
     else {
@@ -44,14 +43,19 @@ mainButton.addEventListener('click', async (event) => {
 })
 
 function createObjectPrototype(prototype, arrayPrototypes) {
-  prototype.constructor ? console.log(prototype.constructor.name) : console.log('Без названия');
+  // prototype.constructor ? console.log(prototype.constructor.name) : console.log('Без названия');
   const objectPrototype = {};
   objectPrototype.constructor = prototype.constructor ? prototype.constructor.name : 'Без названия';
   objectPrototype.properties = [];
 
   for (let key in prototype) {
-    console.log(`${key} (${typeof prototype[key]})`);
-    objectPrototype.properties.push(`${key} (${typeof prototype[key]})`)
+    try {
+      // console.log(`${key} (${typeof prototype[key]})`);
+      objectPrototype.properties.push(`${key} (${typeof prototype[key]})`)
+    }
+    catch(e) {
+      console.log(`${e.name}: ${e.message}`);
+    }
   }
   arrayPrototypes.push(objectPrototype);
 }
@@ -60,24 +64,23 @@ function createArrayPrototypes(currentValue) {
   if(typeof currentValue === 'function') {
     let prototype;
     prototype = currentValue.prototype;
-    console.log(prototype);
+    // console.log(prototype);
     const arrayPrototypes = [];
     createObjectPrototype(prototype, arrayPrototypes);
 
     while(Object.getPrototypeOf(prototype)) {
       prototype = Object.getPrototypeOf(prototype);
-      console.log(prototype);
+      // console.log(prototype);
       createObjectPrototype(prototype, arrayPrototypes);
     }
     
-    console.log(arrayPrototypes);
+    // console.log(arrayPrototypes);
     createListPrototypes(arrayPrototypes);
 
     mainInput.classList.add('is-valid');
     mainInput.classList.remove('is-invalid');
   }
   else {
-    console.log('no');
     mainInput.classList.remove('is-valid');
     mainInput.classList.add('is-invalid');
   }
