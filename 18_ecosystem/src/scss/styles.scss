@@ -3,3 +3,22 @@
 body {
   background: linear-gradient(90deg, #f598a8, #f6edb2);
 }
+.show {
+  display: block;
+}
+.visible {
+  visibility: visible !important;
+}
+.valid-feedback,
+.invalid-feedback {
+  position: absolute;
+}
+.logo {
+  height: 40px;
+  width: 100px;
+  visibility: hidden;
+}
+.form-floating {
+  position: relative;
+  margin-bottom: 30px;
+}
