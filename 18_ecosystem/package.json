@@ -1,13 +1,27 @@
 {
+  "name": "ecosystem",
+  "description": "18_ecosystem",
+  "author": "Viktoriia",
   "private": true,
   "scripts": {
+    "dev": "parcel src/index.html --open",
+    "build": "parcel build src/index.html",
     "lint": "eslint ./",
     "lint:report": "eslint ./"
   },
   "devDependencies": {
-    "eslint": "^7.15.0",
+    "@parcel/transformer-sass": "^2.9.1",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-formatter-gitlab": "^2.1.0",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint-formatter-gitlab": "^2.2.0",
+    "eslint-plugin-import": "^2.27.5",
+    "parcel": "^2.9.1"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.0",
+    "payform": "^1.4.0",
+    "redom": "^3.29.1",
+    "validator": "^13.9.0"
   }
 }
