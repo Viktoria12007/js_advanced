@@ -24,9 +24,11 @@ describe('Игра "Найди пару". В начальном состояни
       .should('have.attr', 'hasFlippedCard', 'true');
   });
 
-  it('Нажать на левую верхнюю карточку, затем на следующую. Если это не пара, то повторять со следующей карточкой, пока не будет найдена пара. Проверить, что найденная пара карточек осталась видимой.', () => {
+  it.only('Нажать на левую верхнюю карточку, затем на следующую. Если это не пара, то повторять со следующей карточкой, пока не будет найдена пара. Проверить, что найденная пара карточек осталась видимой.', () => {
     cy.get('.box_for_cards .card').first().as('firstCard');
+    let stop = false;
     cy.get('.box_for_cards .card').each(($el, index) => {
+      if (stop) return false;
       if (index !== 0) {
         cy.get($el).as('secondCard');
         cy.get('@firstCard')
@@ -39,6 +41,7 @@ describe('Игра "Найди пару". В начальном состояни
                 cy.get('@secondCard').click();
                 cy.tick(1500);
                 if (data === data2) {
+                  stop = true;
                   cy.get('@firstCard').should(
                     'have.attr',
                     'hasFlippedCard',
@@ -49,7 +52,6 @@ describe('Игра "Найди пару". В начальном состояни
                     'hasFlippedCard',
                     'true'
                   );
-                  return false;
                 }
               });
           });
