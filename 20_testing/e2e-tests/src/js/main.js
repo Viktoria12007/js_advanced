@@ -232,7 +232,6 @@ function createCouplesApp() {
 
     function restartGame() {
       const flippedCards = document.querySelectorAll('.flip');
-      console.log(flippedCards.length);
 
       if (flippedCards.length === cards.length) {
         if (!confirm('Вы выйграли! Сыграть ещё раз?')) {
