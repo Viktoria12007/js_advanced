@@ -24,49 +24,57 @@ describe('Игра "Найди пару". В начальном состояни
       .should('have.attr', 'hasFlippedCard', 'true');
   });
 
-  it.only('Нажать на левую верхнюю карточку, затем на следующую. Если это не пара, то повторять со следующей карточкой, пока не будет найдена пара. Проверить, что найденная пара карточек осталась видимой.', () => {
+  it('Нажать на левую верхнюю карточку, затем на следующую. Если это не пара, то повторять со следующей карточкой, пока не будет найдена пара. Проверить, что найденная пара карточек осталась видимой.', () => {
+    function findCouple(index) {
+      cy.get('.box_for_cards .card').eq(index).as('secondCard');
+      cy.get('@firstCard')
+        .invoke('attr', 'data-number')
+        .then((data) => {
+          cy.get('@secondCard')
+            .invoke('attr', 'data-number')
+            .then((data2) => {
+              cy.get('@firstCard').click();
+              cy.get('@secondCard').click();
+              cy.tick(1500);
+              if (data === data2) {
+                cy.get('@firstCard').should(
+                  'have.attr',
+                  'hasFlippedCard',
+                  'true'
+                );
+                cy.get('@secondCard').should(
+                  'have.attr',
+                  'hasFlippedCard',
+                  'true'
+                );
+                stop = true;
+              }
+              // eslint-disable-next-line no-param-reassign
+              index += 1;
+              if (index < 8 && !stop) {
+                findCouple(index);
+              }
+            });
+        });
+    }
     cy.get('.box_for_cards .card').first().as('firstCard');
     let stop = false;
-    cy.get('.box_for_cards .card').each(($el, index) => {
-      if (stop) return false;
-      if (index !== 0) {
-        cy.get($el).as('secondCard');
-        cy.get('@firstCard')
-          .invoke('attr', 'data-number')
-          .then((data) => {
-            cy.get('@secondCard')
-              .invoke('attr', 'data-number')
-              .then((data2) => {
-                cy.get('@firstCard').click();
-                cy.get('@secondCard').click();
-                cy.tick(1500);
-                if (data === data2) {
-                  stop = true;
-                  cy.get('@firstCard').should(
-                    'have.attr',
-                    'hasFlippedCard',
-                    'true'
-                  );
-                  cy.get('@secondCard').should(
-                    'have.attr',
-                    'hasFlippedCard',
-                    'true'
-                  );
-                }
-              });
-          });
-      }
-    });
+    let index = 1;
+    findCouple(index);
   });
 
   it('Нажать на левую верхнюю карточку, затем на следующую. Если это пара, то повторять со следующими двумя карточками, пока не найдутся непарные карточки. Проверить, что после нажатия на вторую карточку обе становятся невидимыми.', () => {
-    let nextCouples = true;
-    cy.get('.box_for_cards .card').each(($el, index, $list) => {
+    function findNotCouple(index) {
       if (nextCouples) {
-        cy.get($el).as('firstCard');
+        cy.get('.box_for_cards .card').eq(index).as('firstCard');
         nextCouples = false;
+        // eslint-disable-next-line no-param-reassign
+        index += 1;
+        if (index < 8 && !stop) {
+          findNotCouple(index);
+        }
       } else {
-        cy.get($el).as('secondCard');
+        cy.get('.box_for_cards .card').eq(index).as('secondCard');
         cy.get('@firstCard')
           .invoke('attr', 'data-number')
           .then((data) => {
@@ -78,6 +86,11 @@ describe('Игра "Найди пару". В начальном состояни
                 cy.tick(1500);
                 if (data === data2) {
                   nextCouples = true;
+                  // eslint-disable-next-line no-param-reassign
+                  index += 1;
+                  if (index < 8 && !stop) {
+                    findNotCouple(index);
+                  }
                 } else {
                   cy.get('@firstCard').should(
                     'have.attr',
@@ -90,11 +103,15 @@ describe('Игра "Найди пару". В начальном состояни
                     'false'
                   );
                   nextCouples = false;
-                  return false;
+                  stop = true;
                 }
               });
           });
       }
-    });
+    }
+    let nextCouples = true;
+    let stop = false;
+    let index = 0;
+    findNotCouple(index);
   });
 });
